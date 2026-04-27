@@ -1,0 +1,45 @@
+Test Case ID,Module,Title,Preconditions,Test Steps,Test Data,Expected Result,Priority,Severity
+TC_LOGIN_001,Login,Verify login with valid credentials,User is registered,Enter valid email and password and click login,valid email/password,User is redirected to homepage,High,Critical
+TC_LOGIN_002,Login,Verify login with invalid credentials,User is registered,Enter valid email and invalid password,invalid password,Error message displayed,High,Major
+TC_LOGIN_003,Login,Verify account creation with valid details,User not registered,Enter valid signup details and submit,valid user data,Account is created successfully,High,Critical
+TC_LOGIN_004,Login,Verify forgot password functionality,User is registered,Click forgot password and reset password,valid email,Password reset link sent,Medium,Major
+TC_LOGIN_005,Login,Verify login with empty fields,User on login page,Click login without entering data,blank fields,Validation errors displayed,High,Major
+TC_LOGIN_006,Login,Verify login with SQL injection input,User on login page,Enter SQL injection string in fields,' OR 1=1 --,Login should fail and input sanitized,High,Critical
+TC_SEARCH_001,Search,Verify search returns relevant results,User on homepage,Enter product keyword and search,keyword shoes,Relevant products displayed,High,Major
+TC_SEARCH_002,Search,Verify no results message for invalid search,User on homepage,Search random keyword,keyword xyz123,No results found message shown,Medium,Minor
+TC_SEARCH_003,Search,Verify search with special characters,User on homepage,Search using special characters,@#$%,System handles input without crash,Medium,Major
+TC_SEARCH_004,Search,Verify search with very long input string,User on homepage,Enter long keyword (>256 chars),long string,System handles input and returns result or error gracefully,Medium,Major
+TC_PRODUCT_001,Product,Verify product catalogue page loads correctly,User logged in,Navigate to product catalogue,NA,Products displayed with details,High,Major
+TC_PRODUCT_002,Product,Verify filter and sort functionality,Products available,Apply filter and sort options,price low to high,Products sorted correctly,Medium,Minor
+TC_PRODUCT_003,Product,Verify product page with missing data,Product exists,Load product with incomplete data,product with null fields,UI handles missing fields without crash,High,Major
+TC_PRODUCT_004,Product,Verify image load failure handling,Product page open,Simulate broken image URL,broken image link,Placeholder image shown,Low,Minor
+TC_CART_001,Cart,Verify add to cart functionality,Product available,Click add to cart,Product ID,Product added to cart,High,Critical
+TC_CART_002,Cart,Verify delete from cart removes product,Product in cart,Click remove item,NA,Product removed from cart,High,Major
+TC_CART_003,Cart,Verify cart price calculation,Products in cart,Add multiple items,multiple products,Total price calculated correctly,High,Critical
+TC_CART_004,Cart,Verify discount and coupon availability,Product in cart,Apply coupon,valid coupon,Discount applied successfully,High,Major
+TC_CART_005,Cart,Verify discount calculation accuracy,Coupon applied,Check final price,coupon applied,Discounted price correct,High,Critical
+TC_CART_006,Cart,Verify adding out-of-stock product,Product out of stock,Attempt to add product to cart,product unavailable,Error shown and item not added,High,Critical
+TC_CART_007,Cart,Verify cart persistence after logout and login,User logged in with items in cart,Logout and login again,NA,Cart items persist correctly,High,Major
+TC_CART_008,Cart,Verify cart behavior on browser refresh,Items in cart,Refresh browser,NA,Cart data remains unchanged,High,Major
+TC_CART_009,Cart,Verify maximum quantity limit enforcement,Product in cart,Increase quantity beyond limit,qty > max,System restricts quantity and shows message,Medium,Major
+TC_PAYMENT_001,Payment,Verify multiple payment options available,At payment page,View payment options,NA,Multiple options displayed,Medium,Minor
+TC_PAYMENT_002,Payment,Verify only one payment option selectable,At payment page,Select payment options,NA,Only one option selectable,Medium,Minor
+TC_PAYMENT_003,Payment,Verify successful payment flow,Valid payment details,Complete payment,valid payment,Payment success and order placed,High,Critical
+TC_PAYMENT_004,Payment,Verify unsuccessful payment handling,Payment page,Enter invalid payment details,invalid payment,Payment fails with error,High,Critical
+TC_PAYMENT_005,Payment,Verify order not created on payment failure,Payment fails,Attempt payment,invalid payment,Order not created,High,Critical
+TC_PAYMENT_006,Payment,Verify order cancellation if payment succeeds but order fails,Payment success,Simulate order failure,edge case,Order cancelled or payment reversed,High,Critical
+TC_PAYMENT_007,Payment,Verify order placement after successful payment,Payment success,Complete payment,valid payment,Order ID generated successfully,High,Critical
+TC_PAYMENT_008,Payment,Verify duplicate payment prevention on multiple clicks,User on payment page,Click pay multiple times rapidly,valid payment,Only one transaction processed,High,Critical
+TC_PAYMENT_009,Payment,Verify payment timeout handling,User making payment,Simulate network delay,slow network,Timeout message shown and retry option available,High,Critical
+TC_PAYMENT_010,Payment,Verify payment with insufficient balance,User on payment page,Use card with low balance,invalid payment,Payment fails with proper message,High,Critical
+TC_PAYMENT_011,Payment,Verify retry payment after failure,Payment failed once,Retry payment with valid details,valid payment,Payment succeeds and order placed,High,Critical
+TC_PAYMENT_012,Payment,Verify system behavior on network failure during payment,User on payment page,Disconnect network during payment,network off,Payment fails gracefully without order creation,High,Critical
+TC_CHECKOUT_001,Checkout,Verify proceed to checkout,Items in cart,Click checkout,NA,User navigates to checkout page,High,Critical
+TC_CHECKOUT_002,Checkout,Verify address validation,User at checkout,Enter invalid address,invalid address,Error shown for invalid address,High,Major
+TC_CHECKOUT_003,Checkout,Verify checkout with empty address fields,User at checkout,Submit without address,blank fields,Validation error shown,High,Major
+TC_CHECKOUT_004,Checkout,Verify checkout with invalid pincode,User at checkout,Enter invalid postal code,invalid pincode,Error message displayed,High,Major
+TC_CHECKOUT_005,Checkout,Verify session timeout during checkout,User inactive at checkout,Wait for session timeout and proceed,NA,User redirected to login page,High,Critical
+TC_ORDER_001,Order,Verify order not duplicated on page refresh after payment,Payment completed,Refresh confirmation page,NA,Order created only once,High,Critical
+TC_ORDER_002,Order,Verify order history update after successful order,Order placed,Navigate to order history,NA,Order visible in history,Medium,Major
+,,,,,,,,
+,,,,,,,,
