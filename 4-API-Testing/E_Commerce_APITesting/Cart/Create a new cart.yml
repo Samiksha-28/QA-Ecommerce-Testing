@@ -1,0 +1,42 @@
+info:
+  name: "Create a new cart "
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: https://fakestoreapi.com/carts
+  body:
+    type: json
+    data: |-
+      {
+        "id": 0,
+        "userId": 0,
+        "products": [
+          {
+            "id": 0,
+            "title": "Scneted candle",
+            "price": 0.1,
+            "description": "string",
+            "category": "Home goods",
+            "image": "http://example.com"
+          }
+        ]
+      }
+  auth: inherit
+
+runtime:
+  scripts:
+    - type: tests
+      code: |-
+        test("Status code is 201", () => {
+            expect(res.status).to.equal(201);
+        });
+
+        test("Response time", () => { expect(res.responseTime).to.be.below(1000); });
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

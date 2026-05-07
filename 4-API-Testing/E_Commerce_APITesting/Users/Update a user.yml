@@ -1,0 +1,32 @@
+info:
+  name: Update a user
+  type: http
+  seq: 3
+
+http:
+  method: PUT
+  url: https://fakestoreapi.com/users/1
+  body:
+    type: json
+    data: |-
+      {
+        "id": 3,
+        "username": "Samiksha",
+        "email": "test@gmail.com",
+        "password": "pass#1234"
+      }
+  auth: inherit
+
+runtime:
+  scripts:
+    - type: tests
+      code: |-
+        test("Status is 200", () => {
+          expect(res.status).to.equal(200);
+        });
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

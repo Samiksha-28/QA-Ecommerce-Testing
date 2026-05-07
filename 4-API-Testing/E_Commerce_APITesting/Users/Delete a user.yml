@@ -1,0 +1,23 @@
+info:
+  name: "Delete a user "
+  type: http
+  seq: 4
+
+http:
+  method: DELETE
+  url: https://fakestoreapi.com/users/5
+  auth: inherit
+
+runtime:
+  scripts:
+    - type: tests
+      code: |-
+        test("Status is 200", () => {
+          expect(res.status).to.equal(200);
+        });
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

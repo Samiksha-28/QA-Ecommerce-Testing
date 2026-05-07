@@ -1,0 +1,36 @@
+info:
+  name: Add a Product
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: https://fakestoreapi.com/products
+  body:
+    type: json
+    data: |-
+      {
+        "id": 0,
+        "title": "string",
+        "price": 0.1,
+        "description": "string",
+        "category": "string",
+        "image": "http://example.com"
+      }
+  auth: inherit
+
+runtime:
+  scripts:
+    - type: tests
+      code: |-
+        test("Status is 200", () => {
+          expect(res.status).to.equal(200);
+        });
+
+        test("Response time", () => { expect(res.responseTime).to.be.below(1000); });
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

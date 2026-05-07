@@ -1,0 +1,23 @@
+info:
+  name: Get a single cart
+  type: http
+  seq: 5
+
+http:
+  method: GET
+  url: https://fakestoreapi.com/carts/5
+  auth: inherit
+
+runtime:
+  scripts:
+    - type: tests
+      code: |-
+        test("Status code is 200", () => {
+            expect(res.status).to.equal(200);
+        });
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

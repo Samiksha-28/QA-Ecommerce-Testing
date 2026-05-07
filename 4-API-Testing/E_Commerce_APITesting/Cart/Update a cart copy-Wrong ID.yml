@@ -1,0 +1,36 @@
+info:
+  name: Update a cart copy-Wrong ID
+  type: http
+  seq: 4
+
+http:
+  method: PUT
+  url: https://fakestoreapi.com/carts/o
+  auth: inherit
+
+runtime:
+  scripts:
+    - type: tests
+      code: |-
+        test("Status code should be 400", () => {
+            expect(res.status).to.equal(400);
+        });
+
+        test("Response body structure is correct", () => {
+            expect(res.body).to.have.property("status");
+            expect(res.body).to.have.property("message");
+        });
+
+        test("Status should be 'error'", () => {
+            expect(res.body.status).to.equal("error");
+        });
+
+        test("Correct error message is returned", () => {
+            expect(res.body.message).to.equal("something went wrong! check your sent data");
+        });
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

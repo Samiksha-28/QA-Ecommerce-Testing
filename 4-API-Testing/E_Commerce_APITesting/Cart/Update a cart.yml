@@ -1,0 +1,25 @@
+info:
+  name: Update a cart
+  type: http
+  seq: 6
+
+http:
+  method: PUT
+  url: https://fakestoreapi.com/carts/4
+  auth: inherit
+
+runtime:
+  scripts:
+    - type: tests
+      code: |-
+        test("Status code is 200", () => {
+            expect(res.status).to.equal(200);
+        });
+
+        test("Response time", () => { expect(res.responseTime).to.be.below(1000); });
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

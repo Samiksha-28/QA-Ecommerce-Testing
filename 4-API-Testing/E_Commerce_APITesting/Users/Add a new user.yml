@@ -1,0 +1,32 @@
+info:
+  name: Add a new user
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: https://fakestoreapi.com/users
+  body:
+    type: json
+    data: |-
+      {
+        "id": 5,
+        "username": "Samiksha",
+        "email": "Test@gmail.com",
+        "password": "string"
+      }
+  auth: inherit
+
+runtime:
+  scripts:
+    - type: tests
+      code: |-
+        test("Status is 200", () => {
+          expect(res.status).to.equal(200);
+        });
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
